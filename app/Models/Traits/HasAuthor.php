@@ -27,6 +27,6 @@ trait HasAuthor
 
     public function author(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'created_by')->withTrashed();
+        return $this->belongsTo(User::class, 'created_by');
     }
 }

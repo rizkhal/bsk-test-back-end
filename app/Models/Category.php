@@ -16,6 +16,7 @@ class Category extends Model
     
     protected $withCount = [
         'posts',
+        'author',
     ];
     
     public function posts(): HasMany

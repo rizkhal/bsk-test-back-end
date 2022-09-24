@@ -10,10 +10,15 @@ use App\Models\Category;
 
 class CategoryJsonController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['index', 'show']]);
+    }
+
     public function index(Request $request)
     {
         return CategoryResource::collection(
-            Category::query()->paginate(10)
+            Category::query()->paginate($request->query('per_page', 10))
         );
     }
 

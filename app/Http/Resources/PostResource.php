@@ -10,7 +10,7 @@ class PostResource extends JsonResource
     public function toArray($request)
     {
         return Arr::except(parent::toArray($request), [
-            'category_id',
+            'category_id'
         ]);
     }
 }

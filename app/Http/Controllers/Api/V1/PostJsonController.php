@@ -10,10 +10,15 @@ use App\Http\Resources\PostResource;
 
 class PostJsonController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['index', 'show']]);
+    }
+
     public function index(Request $request)
     {
         return PostResource::collection(
-            Post::query()->paginate(10)
+            Post::query()->paginate($request->query('per_page', 16))
         );
     }
 

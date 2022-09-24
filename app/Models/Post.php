@@ -16,7 +16,8 @@ class Post extends Model
     protected $guarded = [];
 
     protected $with = [
-        'category'
+        'author',
+        'category',
     ];
 
     public static function booted(): void
@@ -29,5 +30,15 @@ class Post extends Model
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class, 'category_id', 'id');
+    }
+
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'slug';
     }
 }

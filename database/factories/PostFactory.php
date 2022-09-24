@@ -21,7 +21,7 @@ class PostFactory extends Factory
         return [
             'title' => $name = $this->faker->unique()->sentence(4),
             'slug' => Str::slug($name) . '-' . time(),
-            'content' => $this->faker->unique()->sentence(4),
+            'content' => $this->faker->unique()->sentence(41),
             'created_by' => User::query()->inRandomOrder()->first()->id,
             'created_at' => $this->faker->dateTimeBetween('-1 year', '-6 month'),
             'updated_at' => $this->faker->dateTimeBetween('-5 month', 'now'),

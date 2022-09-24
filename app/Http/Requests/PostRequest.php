@@ -26,7 +26,7 @@ class PostRequest extends FormRequest
     {
         return [
             'title' => ['required', 'min:5'],
-            'description' => ['nullable', 'min:5'],
+            'content' => ['nullable', 'min:5'],
             'category_id' => ['required', Rule::exists('categories', 'id')],
         ];
     }
