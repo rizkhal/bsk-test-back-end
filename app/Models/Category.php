@@ -13,7 +13,11 @@ class Category extends Model
         HasAuthor;
 
     protected $guarded = [];
-
+    
+    protected $withCount = [
+        'posts',
+    ];
+    
     public function posts(): HasMany
     {
         return $this->hasMany(Post::class, 'category_id', 'id');

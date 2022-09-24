@@ -25,9 +25,7 @@ class CategoryJsonController extends Controller
     }
 
     public function show(Category $category)
-    {
-        $category->loadCount('categories');
-        
+    {        
         return CategoryResource::make($category);
     }
 

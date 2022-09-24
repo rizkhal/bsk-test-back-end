@@ -13,7 +13,7 @@ class PostJsonController extends Controller
     public function index(Request $request)
     {
         return PostResource::collection(
-            Post::query()->with('category')->paginate(10)
+            Post::query()->paginate(10)
         );
     }
 
@@ -26,8 +26,6 @@ class PostJsonController extends Controller
 
     public function show(Post $post)
     {
-        $post->loadMissing('categories');
-
         return PostResource::make($post);
     }
 

@@ -21,8 +21,9 @@ return new class extends Migration
             Schema::create('posts', function (Blueprint $table) {
                 $table->id();
                 $table->string('title');
+                $table->string('slug')->unique();
                 $table->foreignId('category_id')->constrained('categories', 'id')->onDelete('cascade');
-                $table->longText('description')->nullable();
+                $table->longText('content')->nullable();
                 $table->commonFields();
             });
         }
