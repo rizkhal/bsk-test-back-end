@@ -1,8 +1,10 @@
 <?php
 
-use App\Http\Controllers\Api\V1\SuggestionJsonController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\V1\CategoryJsonController;
+use App\Http\Controllers\Api\V1\PostJsonController;
 
 Route::prefix('v1')->middleware('auth')->group(function () {
-    Route::apiResource('suggestions', SuggestionJsonController::class);
+    Route::apiResource('posts', PostJsonController::class);
+    Route::apiResource('categories', CategoryJsonController::class);
 });
