@@ -28,15 +28,27 @@ class PostRequest extends FormRequest
             'title' => ['required', 'min:5'],
             'summary' => ['required'],
             'content' => ['nullable', 'min:5'],
-            'thumbnail' => ['required', 'mimes:png,jpg,jpeg'],
+            'thumbnail' => ['mimes:png,jpg,jpeg', $this->isStore() ? 'required' : 'nullable'],
             'category_id' => ['required', Rule::exists('categories', 'id')],
         ];
     }
 
+    protected function isUpdate(): bool
+    {
+        return $this->method() == 'PUT';
+    }
+
+    protected function isStore(): bool
+    {
+        return $this->method() == 'POST';
+    }
+
     public function getData()
     {
+        $file = $this->hasFile('thumbnail') ? $this->file('thumbnail')->store('thumbnail') : null;
+
         return array_merge($this->validated(), [
-            'thumbnail' => $this->hasFile('thumbnail') ? $this->file('thumbnail')->store('thumbnail') : null,
+            'thumbnail' => is_null($file) && $this->isUpdate() ? $this->post->thumbnail : $this->file('thumbnail')->store('thumbnail'),
         ]);
     }
 }
