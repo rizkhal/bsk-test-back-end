@@ -21,5 +21,7 @@ class UserTableSeeder extends Seeder
             'email' => 'test@mail.com',
             'password' => Hash::make('secret123'),
         ]);
+
+        $this->command->info('User created');
     }
 }

@@ -22,8 +22,10 @@ return new class extends Migration
                 $table->id();
                 $table->string('title');
                 $table->string('slug')->unique();
-                $table->foreignId('category_id')->constrained('categories', 'id')->onDelete('cascade');
+                $table->tinyText('summary');
+                $table->string('thumbnail')->nullable();
                 $table->longText('content')->nullable();
+                $table->foreignId('category_id')->constrained('categories', 'id')->onDelete('cascade');
                 $table->commonFields();
             });
         }

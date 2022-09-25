@@ -21,7 +21,7 @@ class PostTableSeeder extends Seeder
         $blogCategories = Category::factory()->count(20)->create();
         $this->command->info('Post category created.');
 
-        Post::factory()->count(120)
+        Post::factory()->count(20)
             ->state(fn (array $attributes): array => [
                 'category_id' => $blogCategories->random(1)->first()->id,
             ])
